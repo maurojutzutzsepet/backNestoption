@@ -1,0 +1,13 @@
+{
+    "configurations": [
+        {
+            "type": "node",
+            "request": "launch",
+            "name":"Debugg nest Framework",
+            "runtimeArgs": ["--nolazy","-r", "ts-node/register"],
+            "args": ["${workspaceFolder}/src/main.ts"],
+            "autoAttachChildProcesses": true
+        }
+
+    ]
+}
