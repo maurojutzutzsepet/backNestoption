@@ -9,12 +9,14 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { Roles } from '../role/decorators/role.decorator';
 import { RoleGuard } from '../role/guards/role.guard';
 import { RoleType } from '../role/roletype';
 import { CreateUserDto, ReadUserDto } from './dto';
 import { UserService } from './user.service';
 
+@ApiTags('Users module')
 @Controller('users')
 export class UserController {
   constructor(private readonly _userService: UserService) {}
@@ -28,6 +30,7 @@ export class UserController {
   @UseGuards(AuthGuard(), RoleGuard)
   @Get()
   @Roles(RoleType.ADMIN, RoleType.GENERAL)
+  @ApiBearerAuth('JWT-auth')
   getUsers(): Promise<ReadUserDto[]> {
     const users = this._userService.getAll();
     return users;

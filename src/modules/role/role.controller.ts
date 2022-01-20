@@ -8,10 +8,11 @@ import {
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { CreateRoleDto, ReadRoleDto, UpdateRoleDto } from './dto';
 import { Role } from './role.entity';
 import { RoleService } from './role.service';
-
+@ApiTags('Role module')
 @Controller('roles')
 export class RoleController {
   constructor(private readonly _roleService: RoleService) {}
